@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+.align_td {
+    text-align: center;
+/*    background-color: #ccc;*/
+}
+
+.destaque {
+    background-color: #64B5F6;
+    color: white;
+}
+
+.addCor {
+    background-color: #999;
+    color: white;
+
+}
