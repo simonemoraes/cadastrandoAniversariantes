@@ -6,20 +6,10 @@ if (!defined('BASEPATH'))
 class Cadastro_de_aniversariantes_model extends CI_Model {
 
     var $tabela_pacientes = "pacientes";
-    
+
     public function listaTodos() {
-        
-        $query = $this->db->get($this->tabela_pacientes);
-        if ($query->num_rows() > 0) {
-            return $query->result_array();
-        } else {
-            return null;
-        }
-    }
-    
-    public function listaMes($mes){
-        
-        $this->db->where("month(dt_nasc)", $mes);   
+
+        $query = $this->db->order_by("nome","asc");
         $query = $this->db->get($this->tabela_pacientes);
         if ($query->num_rows() > 0) {
             return $query->result_array();
@@ -28,8 +18,23 @@ class Cadastro_de_aniversariantes_model extends CI_Model {
         }
     }
 
+    public function listaMes($mes) {
+
+        $this->db->select('*');
+        $this->db->select("DATE_FORMAT(dt_nasc,'%d/%m/%Y') AS data_nasc", FALSE);
+        $this->db->where("month(dt_nasc)", $mes);
+        $this->db->order_by("day(dt_nasc)","asc");
+        $query = $this->db->get($this->tabela_pacientes);
+
+        if ($query->num_rows() > 0) {
+            return $query->result_array();
+        } else {
+            return null;
+        }
+    }
+
     public function salva($paciente) {
-        
+
         return $this->db->insert($this->tabela_pacientes, $paciente);
     }
 

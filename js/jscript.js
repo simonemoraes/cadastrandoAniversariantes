@@ -59,6 +59,7 @@ $(document).ready(function () {
     });
 
 
+
 });
 
 /* Ao clicar no botão a tabela será atualizada */
@@ -99,24 +100,20 @@ $('#btn_buscar').click(function () {
     var mes = $('#select option:selected').val();
     //alert('Pagina Inicial: ' + mes);
 
-    console.log(mes);
-
     var url = 'http://localhost/cadastrandoAniversariantes/index.php/cadastroaniversariantes/relatorio';
 
     $.post(url, {
         mes: mes
     }, function (data, status) {
-        //alert(status);
-
         var dados = JSON.parse(data);
-        
+
         var html_td = "";
 
         if (dados !== 'vazio') {
             $.each(dados, function (i, item) {
                 html_td = html_td + "<tr><td class='align_td'>" + item.id + "</td>";
                 html_td = html_td + "<td class='align_td'>" + item.nome + "</td>";
-                html_td = html_td + "<td class='align_td'>" + item.dt_nasc + "</td>";
+                html_td = html_td + "<td class='align_td'>" + item.data_nasc + "</td>";
                 html_td = html_td + "<td class='align_td'>" + item.convenio + "</td></tr>";
             });
 

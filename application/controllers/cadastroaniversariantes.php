@@ -83,6 +83,7 @@ class Cadastroaniversariantes extends CI_Controller {
         if ($mes != '0' && $mes != '') {
            
             $listaAniversariante = $this->cadastro_de_aniversariantes_model->listaMes($mes);
+            
 
             if ($listaAniversariante != '') {
                 echo json_encode($listaAniversariante);
