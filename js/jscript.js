@@ -105,8 +105,11 @@ $('#btn_buscar').click(function () {
     $.post(url, {
         mes: mes
     }, function (data, status) {
+        
+        
+    
         var dados = JSON.parse(data);
-
+       
         var html_td = "";
 
         if (dados !== 'vazio') {
@@ -321,5 +324,5 @@ function limparCampos() {
 //
 
 /* Ordena elementos */
-$("#sortable").sortable();
+//$("#sortable").sortable();
 

@@ -57,7 +57,6 @@
                         </thead>
                         <tbody id="lista_aniver">
                            
-
                         </tbody>
 
                     </table>
