@@ -122,14 +122,13 @@ class Cadastroaniversariantes extends CI_Controller {
 //                    'link' => 'linktwo')
 //            );
 
-            for ($n = 0; $n <= $listaAniversariante; $n++) {
+           
                 $data['lista'] = array(
                 array(
-                'id' => $listaAniversariante[0]['id']),
-                array(
-                'id' => $listaAniversariante[1]['id'])
+                'id' => $listaAniversariante[0]['id'])
+                
                 );
-            }
+            
 
 
             echo '<pre>';
@@ -154,9 +153,9 @@ class Cadastroaniversariantes extends CI_Controller {
 //            } else {
 //                echo 'Não houve retorno de lista';
 //            }
-//        } else {
+        } else {
 //            $dados['niver'] = $listaAniversariante;
-//            $this->load->view('cadastro/lista',$dados);
+            $this->load->view('cadastro/lista');
         }
     }
 
