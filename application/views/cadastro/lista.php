@@ -56,17 +56,7 @@
                             </tr>
                         </thead>
                         <tbody id="lista_aniver">
-                            <?php foreach ($niver as $values):?> {
-                                 
-
-
-                                    <tr>
-                                        <td class = 'align_td'><?= $values['id'] ?></td>
-                                        <td class = 'align_td'><?= $values['nome'] ?></td>
-                                        <td class = 'align_td'><?= $values['data_nasc'] ?></td>
-                                        <td class = 'align_td'><?= $values['convenio'] ?></td>
-                                    </tr>
-    <?php endforeach;?>
+                          
                         </tbody>
 
                     </table>

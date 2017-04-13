@@ -105,33 +105,59 @@ class Cadastroaniversariantes extends CI_Controller {
     public function teste1() {
         $mes = $_POST['meses'];
 
-     
+
 
         if ($mes != '0' && $mes != '') {
 
             $listaAniversariante = $this->cadastro_de_aniversariantes_model->listaMes($mes);
 
-            if ($listaAniversariante != '') {
-                
-                $dados['niver'] = $listaAniversariante;
-                
-                echo '<pre>';
-                print_r($dados);
-                echo '</pre>';
-                
-                
-                $this->load->view('cadastro/lista', $dados);
-                
-                
-            } else {
-                echo 'Não houve retorno de lista';
-            }
-        } else {
-            $dados['niver'] = $listaAniversariante;
-            $this->load->view('cadastro/lista',$dados);
-        }
+            //$data['datas'] = $listaAniversariante;
+            //
+//            $data['navs'] = array(
+//                array(
+//                    'name' => 'one',
+//                    'link' => 'linkone'),
+//                array(
+//                    'name' => 'two',
+//                    'link' => 'linktwo')
+//            );
 
-       
+            for ($n = 0; $n <= $listaAniversariante; $n++) {
+                $data['lista'] = array(
+                array(
+                'id' => $listaAniversariante[0]['id']),
+                array(
+                'id' => $listaAniversariante[1]['id'])
+                );
+            }
+
+
+            echo '<pre>';
+            print_r($data);
+            echo '</pre>';
+
+            $this->load->view('cadastro/lista2', $data);
+
+//            $this->load->view('cadastro/lista2');
+//            if ($listaAniversariante != '') {
+//                
+//                $dados['niver'] = $listaAniversariante;
+//                
+//                echo '<pre>';
+//                print_r($dados);
+//                echo '</pre>';
+//                
+//                
+//                $this->load->view('cadastro/lista', $dados);
+//                
+//                
+//            } else {
+//                echo 'Não houve retorno de lista';
+//            }
+//        } else {
+//            $dados['niver'] = $listaAniversariante;
+//            $this->load->view('cadastro/lista',$dados);
+        }
     }
 
     private function listarTodos() {
