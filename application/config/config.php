@@ -135,6 +135,50 @@ $config['subclass_prefix'] = 'MY_';
 | DO NOT CHANGE THIS UNLESS YOU FULLY UNDERSTAND THE REPERCUSSIONS!!
 |
 */
+
+/*
+|--------------------------------------------------------------------------
+| Composer auto-loading
+|--------------------------------------------------------------------------
+|
+| Enabling this setting will tell CodeIgniter to look for a Composer
+| package auto-loader script in application/vendor/autoload.php.
+|
+|	$config['composer_autoload'] = TRUE;
+|
+| Or if you have your vendor/ directory located somewhere else, you
+| can opt to set a specific path as well:
+|
+|	$config['composer_autoload'] = '/path/to/vendor/autoload.php';
+|
+| For more information about Composer, please visit http://getcomposer.org/
+|
+| Note: This will NOT disable or override the CodeIgniter-specific
+|	autoloading (application/config/autoload.php)
+*/
+$config['composer_autoload'] = './vendor/autoload.php';
+
+/*
+|--------------------------------------------------------------------------
+| Allowed URL Characters
+|--------------------------------------------------------------------------
+|
+| This lets you specify which characters are permitted within your URLs.
+| When someone tries to submit a URL with disallowed characters they will
+| get a warning message.
+|
+| As a security measure you are STRONGLY encouraged to restrict URLs to
+| as few characters as possible.  By default only these are allowed: a-z 0-9~%.:_-
+|
+| Leave blank to allow all characters -- but only if you are insane.
+|
+| The configured value is actually a regular expression character group
+| and it will be executed as: ! preg_match('/^[<permitted_uri_chars>]+$/i
+|
+| DO NOT CHANGE THIS UNLESS YOU FULLY UNDERSTAND THE REPERCUSSIONS!!
+|
+*/
+
 $config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-';
 
 

@@ -5,6 +5,8 @@ if (!defined('BASEPATH'))
 
 class Cadastroaniversariantes extends CI_Controller {
 
+    var $html_mensagem = "";
+
     function __construct() {
         parent::__construct();
 
@@ -38,6 +40,7 @@ class Cadastroaniversariantes extends CI_Controller {
             );
             $retorno = $this->cadastro_de_aniversariantes_model->salva($dados);
         } else {
+            
             $dados = array(
                 "id" => $id,
                 "nome" => $this->input->post('nome'),
@@ -78,85 +81,65 @@ class Cadastroaniversariantes extends CI_Controller {
     }
 
     function relatorio() {
-        $listaAniversariante = '';
-        $mes = $this->input->post('mes');
+//        $listaAniversariante = '';
+//        $mes = $this->input->post('mes');
+//
+//        if ($mes != '0' && $mes != '') {
+//
+//            $listaAniversariante = $this->cadastro_de_aniversariantes_model->listaMes($mes);
+//
+//
+//            if ($listaAniversariante != '') {
+//                echo json_encode($listaAniversariante);
+//            } else {
+//                echo json_encode('vazio');
+//            }
+//        } else {
+//            $this->load->view('cadastro/relatorio');
+//        }
+      $listaAniversariante['lista'] = '';
+        $listaAniversariante['mensagem'] = '';
+        $status = "";
+        $this->html_mensagem = $this->mensagem($status);
+        $listaAniversariante['mensagem'] = $this->html_mensagem;
+        $mes = $this->input->post('meses');
+
 
         if ($mes != '0' && $mes != '') {
 
-            $listaAniversariante = $this->cadastro_de_aniversariantes_model->listaMes($mes);
+            $listaAniversariante['lista'] = $this->cadastro_de_aniversariantes_model->listaMes($mes);
 
 
-            if ($listaAniversariante != '') {
-                echo json_encode($listaAniversariante);
+            if ($listaAniversariante['lista'] != '') {
+                $status = "";
+                $this->html_mensagem = $this->mensagem($status);
+                $listaAniversariante['mensagem'] = $this->html_mensagem;
+              
+                $this->load->view('cadastro/relatorio', $listaAniversariante);
             } else {
-                echo json_encode('vazio');
+                $status = "danger";
+                $this->html_mensagem = $this->mensagem($status);
+                $listaAniversariante['mensagem'] = $this->html_mensagem;
+                
+                $this->load->view('cadastro/relatorio', $listaAniversariante);
             }
         } else {
-            $this->load->view('cadastro/relatorio');
-        }
+            if ($mes != '') {
+                $status = "info";
+                $this->html_mensagem = $this->mensagem($status);
+                $listaAniversariante['mensagem'] = $this->html_mensagem;               
+            }
+            $this->load->view('cadastro/relatorio', $listaAniversariante);
+        }  
+        
     }
 
-    /* função usada somente para teste */
+    
+    private function mensagem($status) {
+        $mensagem["status"] = $status;
+        $retorno = $this->load->view("cadastro/mensagem", $mensagem, TRUE);
 
-    public function teste() {
-        $this->load->view('cadastro/lista');
-    }
-
-    public function teste1() {
-        $mes = $_POST['meses'];
-
-
-
-        if ($mes != '0' && $mes != '') {
-
-            $listaAniversariante = $this->cadastro_de_aniversariantes_model->listaMes($mes);
-
-            //$data['datas'] = $listaAniversariante;
-            //
-//            $data['navs'] = array(
-//                array(
-//                    'name' => 'one',
-//                    'link' => 'linkone'),
-//                array(
-//                    'name' => 'two',
-//                    'link' => 'linktwo')
-//            );
-
-           
-                $data['lista'] = array(
-                array(
-                'id' => $listaAniversariante[0]['id'])
-                
-                );
-            
-
-
-            echo '<pre>';
-            print_r($data);
-            echo '</pre>';
-
-            $this->load->view('cadastro/lista2', $data);
-
-//            $this->load->view('cadastro/lista2');
-//            if ($listaAniversariante != '') {
-//                
-//                $dados['niver'] = $listaAniversariante;
-//                
-//                echo '<pre>';
-//                print_r($dados);
-//                echo '</pre>';
-//                
-//                
-//                $this->load->view('cadastro/lista', $dados);
-//                
-//                
-//            } else {
-//                echo 'Não houve retorno de lista';
-//            }
-        } else {
-//            $dados['niver'] = $listaAniversariante;
-            $this->load->view('cadastro/lista');
-        }
+        return $retorno;
     }
 
     private function listarTodos() {
@@ -164,5 +147,49 @@ class Cadastroaniversariantes extends CI_Controller {
 
         return $retorno;
     }
+    
+    /* função usada somente para teste */
+
+    public function teste() {
+        $this->load->view('cadastro/lista');
+    }
+
+    public function teste1() {
+        $listaAniversariante['lista'] = '';
+        $listaAniversariante['mensagem'] = '';
+        $status = "";
+        $this->html_mensagem = $this->mensagem($status);
+        $listaAniversariante['mensagem'] = $this->html_mensagem;
+        $mes = $this->input->post('meses');
+
+
+        if ($mes != '0' && $mes != '') {
+
+            $listaAniversariante['lista'] = $this->cadastro_de_aniversariantes_model->listaMes($mes);
+
+
+            if ($listaAniversariante['lista'] != '') {
+                $status = "";
+                $this->html_mensagem = $this->mensagem($status);
+                $listaAniversariante['mensagem'] = $this->html_mensagem;
+              
+                $this->load->view('cadastro/lista', $listaAniversariante);
+            } else {
+                $status = "danger";
+                $this->html_mensagem = $this->mensagem($status);
+                $listaAniversariante['mensagem'] = $this->html_mensagem;
+                
+                $this->load->view('cadastro/lista', $listaAniversariante);
+            }
+        } else {
+            if ($mes != '') {
+                $status = "info";
+                $this->html_mensagem = $this->mensagem($status);
+                $listaAniversariante['mensagem'] = $this->html_mensagem;               
+            }
+            $this->load->view('cadastro/lista', $listaAniversariante);
+        }
+    }
+
 
 }

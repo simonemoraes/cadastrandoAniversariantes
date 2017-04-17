@@ -20,8 +20,9 @@ $(document).ready(function () {
             }, function (data, status) {
 
                 if (data) {
-                    alert("Registro inserido com sucesso!!");
+                    
                     window.location.reload();
+                    alert("Registro inserido com sucesso!!");
                 } else {
                     alert("Ocorreu um erro ao inserir o registro!!");
                 }
@@ -58,9 +59,9 @@ $(document).ready(function () {
         }
     });
 
-
-
 });
+
+
 
 /* Ao clicar no botão a tabela será atualizada */
 $('#btn_atualiza').click(function () {
@@ -77,7 +78,7 @@ $('#tabelaClientes tbody tr').each(function () {
             $(this).children("*").addClass("addCor");
 
             var id = $(this).find('td[id=id]').text();
-
+            
             $.post('http://localhost/cadastrandoAniversariantes/index.php/cadastroaniversariantes/editar', {
                 id: id
             }, function (data, status) {
@@ -94,7 +95,8 @@ $('#tabelaClientes tbody tr').each(function () {
 
 
 
-/* Popula tabela com aniversariantes do mes */
+/* Popula tabela com aniversariantes do mes 
+ * Esta função foi desabilitada*/
 $('#btn_buscar').click(function () {
 
     var mes = $('#select option:selected').val();
@@ -105,11 +107,9 @@ $('#btn_buscar').click(function () {
     $.post(url, {
         mes: mes
     }, function (data, status) {
-        
-        
-    
+
         var dados = JSON.parse(data);
-       
+
         var html_td = "";
 
         if (dados !== 'vazio') {
@@ -129,9 +129,6 @@ $('#btn_buscar').click(function () {
         }
     });
 });
-
-
-
 
 
 /* COLORE A TABELA DE ACORDO COM O MOUSE */

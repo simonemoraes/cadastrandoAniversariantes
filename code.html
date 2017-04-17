@@ -1,16 +1,13 @@
-<?php include 'cabecalho.php' ?>
-<div style="margin-top: 150px;" class="container">
-<?php if ($status == 'danger') { ?>
-        <?= $mensagem ?>
-    <?php }else if($status == 'info'){?>
-        <?= $mensagem ?>
-   <?php } ?>
-    
+
+    <form action="http://localhost/cadastrandoAniversariantes/index.php/cadastroaniversariantes/gerarPdf" target="_blank">
+        <input type="submit" value="Gerar PDF">
+    </form>
+
     <div>
 
         <div class="row">
             <div class="col-md-offset-1 col-md-10">
-              
+
                 <div id="div_error" style="display: none"></div>
 
 
@@ -20,7 +17,7 @@
                         <h4><strong>Relatório de aniversariantes por mes</strong></h4>
                     </div>
                     <div class="panel-body">
-                        <form id="form_teste" method="POST" action="<?= base_url("index.php/cadastroaniversariantes/relatorio") ?>">
+                        <form id="form_teste" method="POST" action="http://localhost/cadastrandoAniversariantes/index.php/cadastroaniversariantes/relatorio">
 
                             <div class="form-group">
                                 <div class="row">
@@ -67,29 +64,7 @@
 
 
 
-                            <?php
-                            if ($lista) {
-                                ?>
-
-                                <?php foreach ($lista as $n): ?>
-
-
-                                    <tbody id = "lista_aniver">
-                                        <tr>
-                                            <td class='align_td'><?php echo $n['id']; ?> </td>
-                                            <td class='align_td'><?php echo $n['nome']; ?></td>
-                                            <td class='align_td'><?php echo $n['data_nasc']; ?></td>
-                                            <td class='align_td'><?php echo $n['convenio']; ?></td>
-                                        </tr>
-                                    </tbody>
-
-                                <?php endforeach; ?>
-
-                            </table>
-                        </div>
-                    <?php }
-                    ?>
-
+                            
                     <div class = "panel-footer text-center">
 
                     </div>
@@ -105,16 +80,3 @@
 
         </div>
     </div>
-
-
-</div>
-
-
-
-
-<script src="<?= base_url("js/jquery-1.12.4.min.js") ?>"></script>
-<script src="<?= base_url("js/bootstrap.min.js") ?>"></script>
-<script src="<?= base_url("js/jscript.js") ?>"></script>
-
-</body>
-</html>
