@@ -1,16 +1,17 @@
 <?php include 'cabecalho.php' ?>
 <div style="margin-top: 150px;" class="container">
-<?php if ($status == 'danger') { ?>
+    <?php if ($status == 'danger') { ?>
         <?= $mensagem ?>
-    <?php }else if($status == 'info'){?>
+    <?php } else if ($status == 'info') { ?>
         <?= $mensagem ?>
-   <?php } ?>
-    
-    <div>
+    <?php } ?>
 
+    <div>
+        
+       
         <div class="row">
             <div class="col-md-offset-1 col-md-10">
-              
+
                 <div id="div_error" style="display: none"></div>
 
 
@@ -105,8 +106,8 @@
 
         </div>
     </div>
-
-
+    
+    
 </div>
 
 
